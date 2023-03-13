@@ -1,6 +1,7 @@
 buile:
   stage: build
   script:    
+    - apt-install node
     - node -v
 
 test:
