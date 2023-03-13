@@ -14,9 +14,6 @@ build:
         pandoc "$file" -s -o "${file%.md}.html"
       done
     - mkdocs build --clean
-  artifacts:
-    paths:
-      - /
 
 pages:
   stage: deploy
