@@ -1,22 +1,30 @@
-buile:
-  stage: build
-  script:    
-    - apt-install node
-    - node -v
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install pandoc
+      
+      - name: Convert Markdown to HTML
+        run: |
+          find . -type f -name "*.md" -print0 | while read -d $'\0' file
+          do
+            pandoc "$file" -s -o "${file%.md}.html"
+          done
 
-test:
-  stage: test
-  script:
-    - echo "This job tests something"
-
-pages:
-  stage: deploy
-  script:
-  - mkdir .public
-  - cp -r * .public
-  - mv .public public
-  artifacts:
-    paths:
-    - public
-  only:
-  - main
+  pages:
+    stage: deploy
+    script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+    artifacts:
+      paths:
+      - public
+    only:
+    - main
