@@ -1,14 +1,14 @@
-pages:
+buile:
   stage: build
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
 
-test1:
+test:
   stage: test
   script:
     - echo "This job tests something"
 
-done:
+pages:
   stage: deploy
   script:
   - mkdir .public
