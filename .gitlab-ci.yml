@@ -1,7 +1,7 @@
 buile:
   stage: build
   script:    
-    -node -v
+    - node -v
 
 test:
   stage: test
