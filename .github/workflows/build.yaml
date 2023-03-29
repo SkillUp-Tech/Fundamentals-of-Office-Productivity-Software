@@ -25,7 +25,7 @@ pages:
   artifacts:
     paths:
     - public
-  on:
+on:
     push:
       branches: [ "main" ]
     pull_request:
